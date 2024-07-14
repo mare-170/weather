@@ -1,0 +1,75 @@
+<!-- 180010 -->
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3天気情報の取得</title>
+    <style>
+        #weather {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+    </style>
+    <script>
+        var day_num = 0;
+    </script>
+</head>
+<body>
+    <h1>現在の天気</h1>
+    <div id="weather">
+        <p>Loading...</p>
+    </div>
+    <button onclick="Weather(0)">今日</button>
+    <button onclick="Weather(1)">明日</button>
+    <button onclick="Weather(2)">明後日</button>
+
+
+    <script>
+        const latitude = 36.0644; // 福井の緯度
+        const longitude = 136.2216; // 福井の経度
+        const apiUrl = 'https://weather.tsukumijima.net/api/forecast?city=180010';
+
+
+        function Weather(day_num) {
+
+            fetch(apiUrl)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log(data);
+                const weatherDiv = document.getElementById('weather');
+                const title = data.title;
+                const city = data.location.city;                
+                const temperature = data.forecasts[day_num].temperature.max.celsius; // 現在の気温
+                const description = data.forecasts[day_num].detail.weather; // 天気の説明
+                const time = new Date(data.description.publicTimeFormatted).toLocaleString(); // 時間のフォーマット
+                const url = data.forecasts[day_num].image.url;
+
+                weatherDiv.innerHTML = `
+                    <h2>${title}</h2>
+                    <hr>
+                    <img src="${url}">
+                    <p>現在の気温: ${temperature}°C</p>
+                    <p>天気:   ${description}</p>
+                    <p>更新時間:   ${time}</p>
+                    <p>風:  </p>
+                `;
+            })
+            .catch(error => {
+                console.error('Error fetching weather data:', error);
+                document.getElementById('weather').innerHTML = `<p>天気情報の取得に失敗しました: ${error.message}</p>`;
+            });
+
+        }
+        
+
+        
+    </script>
+</body>
+</html>
