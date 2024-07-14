@@ -50,15 +50,21 @@
                 const description = data.forecasts[day_num].detail.weather; // 天気の説明
                 const time = new Date(data.description.publicTimeFormatted).toLocaleString(); // 時間のフォーマット
                 const url = data.forecasts[day_num].image.url;
+                const day = data.forecasts[day_num].dateLabel;
+                const wind = data.forecasts[day_num].detail.wind;
+                const wave = data.forecasts[day_num].detail.wave;
+                const telop = data.forecasts[day_num].telop;
 
                 weatherDiv.innerHTML = `
                     <h2>${title}</h2>
                     <hr>
+                    <p>${day}</p>
                     <img src="${url}">
-                    <p>現在の気温: ${temperature}°C</p>
-                    <p>天気:   ${description}</p>
+                    <p>最高気温: ${temperature}°C</p>
+                    <p>天気:   ${telop}</p>
+                    <p>詳細:  ${description}</p>
                     <p>更新時間:   ${time}</p>
-                    <p>風:  </p>
+                    <p>風:  ${wind}, ${wave}</p>
                 `;
             })
             .catch(error => {
