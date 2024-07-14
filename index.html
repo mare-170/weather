@@ -12,6 +12,9 @@
             font-family: Arial, sans-serif;
             margin: 20px;
         }
+        .more {
+            display: none;
+        }
     </style>
     <script>
         var day_num = 0;
@@ -38,12 +41,18 @@
         function Display() {
             dis = Math.abs(dis - 1);
             console.log(dis);
+            const moreInfoElements = document.querySelectorAll('.more-info');
             if (dis == 0) {
                 document.getElementById("a").textContent = "非表示";
-                document.getElementById("more").style.display = "none";
+                moreInfoElements.forEach(element => {
+                    element.style.display = "none";
+                });
+                
             } else {
-                document.getElementById("more").style.display = "block";
                 document.getElementById("a").textContent = "表示";
+                moreInfoElements.forEach(element => {
+                    element.style.display = "block";
+                });
             }
         }
         
@@ -92,11 +101,13 @@
                     <p>${day}</p>
                     <img src="${url}">
                     <p>最高気温: ${temperature}°C</p>
-                    <p>天気:   ${telop}</p>
-                    <p id="more"><i style="display: none;">詳細:  ${description}</i></p>                                       
+                    <p>天気:   ${telop}</p                                     
                     <p>風:  ${wind}, ${wave}</p>
-                    <p id="more"><i style="display: none;">降水確率 6時: ${chance[0]}; 12時: ${chance[1]}; 18時: ${chance[2]}; 24時: ${chance[3]}</i></p>
-                    <p id="more"><i style="display: none;">詳細: ${text} </i></p>
+                    <div class="more">
+                        <p>詳細:  ${description}</p>
+                        <p id="more">降水確率 6時: ${chance[0]}; 12時: ${chance[1]}; 18時: ${chance[2]}; 24時: ${chance[3]}</p>
+                        <p id="more">詳細: ${text}</p>
+                    </div>
                     <p>更新時間:   ${time}</p>
                     <button id="a" onclick="Display()">表示</button>                    
                 `;
