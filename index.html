@@ -65,7 +65,7 @@
                 chance[0] = data.forecasts[day_num].chanceOfRain[i].T00_06;
                 chance[1] = data.forecasts[day_num].chanceOfRain[i].T06_12;
                 chance[2] = data.forecasts[day_num].chanceOfRain[i].T12_18;
-                chance[13 = data.forecasts[day_num].chanceOfRain[i].T18_24;
+                chance[3] = data.forecasts[day_num].chanceOfRain[i].T18_24;
 
                 
                 /*
@@ -88,7 +88,7 @@
                     <p id="more">降水確率 6時: ${chance[0]}; 12時: &{chance[1]}; 18時: &{chance[2]}; 24時: ${chance[3]}</p>
                     <p id="more">詳細: ${text} </p>
                     <p>更新時間:   ${time}</p>
-                    <button　onclick='Display()'>表示</button>
+                    <button　onclick="Display()">表示</button>
                 `;
             })
             .catch(error => {
