@@ -31,8 +31,20 @@
         const latitude = 36.0644; // 福井の緯度
         const longitude = 136.2216; // 福井の経度
         const apiUrl = 'https://weather.tsukumijima.net/api/forecast?city=180010';
+        var dis = 0;
+        if (dis==0) {
+            document.getElementById('more').style.display = 'none';
+        } else {
+            document.getElementById('more').style.display = ''
+        }
 
+        function Display() {
+            dis = abs(dis-1);
+        }
+         
 
+        
+        
         function Weather(day_num) {
 
             fetch(apiUrl)
@@ -58,8 +70,9 @@
                 const text = data.description.text;
                 let chance = new Array(4);
                 
+                
                 for (var i = 0; i<4; i++) {
-                    chance[i] = data.forecasts[day_num].chanceOfRain[i];
+                    chance[i] = data.forecasts[day_num].chanceOfRain[i].value;
                     console.log(chance);
                 }
                 
@@ -71,11 +84,12 @@
                     <img src="${url}">
                     <p>最高気温: ${temperature}°C</p>
                     <p>天気:   ${telop}</p>
-                    <p>詳細:  ${description}</p>
-                    <p>更新時間:   ${time}</p>
+                    <p id="more">詳細:  ${description}</p>                                       
                     <p>風:  ${wind}, ${wave}</p>
-                    <p>降水確率 6時: ${chance[0]}; 12時: &{chance[1]}; 18時: &{chance[2]}; 24時: ${chance[3]}</p>
-                    <p>詳細: ${text} </p>
+                    <p id="more">降水確率 6時: ${chance[0]}; 12時: &{chance[1]}; 18時: &{chance[2]}; 24時: ${chance[3]}</p>
+                    <p id="more">詳細: ${text} </p>
+                    <p>更新時間:   ${time}</p>
+                    <button　onclick='Display()'>表示</button>
                 `;
             })
             .catch(error => {
