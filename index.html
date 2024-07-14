@@ -63,10 +63,10 @@
                 const text = data.description.text;
                 let chance = new Array(4);
 
-                chance[0] = data.forecasts[day_num].chanceOfRain[0].T00_06;
-                chance[1] = data.forecasts[day_num].chanceOfRain[1].T06_12;
-                chance[2] = data.forecasts[day_num].chanceOfRain[2].T12_18;
-                chance[3] = data.forecasts[day_num].chanceOfRain[3].T18_24;
+                chance[0] = data.forecasts[day_num].chanceOfRain.T00_06;
+                chance[1] = data.forecasts[day_num].chanceOfRain.T06_12;
+                chance[2] = data.forecasts[day_num].chanceOfRain.T12_18;
+                chance[3] = data.forecasts[day_num].chanceOfRain.T18_24;
 
                 
                 /*
