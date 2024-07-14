@@ -23,6 +23,7 @@
         <p>Loading...</p>
         <p id="more"></p>
     </div>
+    <button　onclick="Display()">表示</button>
     <button onclick="Weather(0)">今日</button>
     <button onclick="Weather(1)">明日</button>
     <button onclick="Weather(2)">明後日</button>
@@ -89,7 +90,7 @@
                     <p id="more">降水確率 6時: ${chance[0]}; 12時: &{chance[1]}; 18時: &{chance[2]}; 24時: ${chance[3]}</p>
                     <p id="more">詳細: ${text} </p>
                     <p>更新時間:   ${time}</p>
-                    <button　onclick="Display()">表示</button>
+                    
                 `;
             })
             .catch(error => {
