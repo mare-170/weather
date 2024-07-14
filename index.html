@@ -55,6 +55,13 @@
                 const wind = data.forecasts[day_num].detail.wind;
                 const wave = data.forecasts[day_num].detail.wave;
                 const telop = data.forecasts[day_num].telop;
+                const text = data.description.text;
+                let chance = array(4);
+                
+                for (var i = 0; i<4; i++) {
+                    chance[i] = data.forecasts[day_num].chanceOfRain[i];
+                }
+                
 
                 weatherDiv.innerHTML = `
                     <h2>${title}</h2>
@@ -66,6 +73,8 @@
                     <p>詳細:  ${description}</p>
                     <p>更新時間:   ${time}</p>
                     <p>風:  ${wind}, ${wave}</p>
+                    <p>降水確率 6時: $</p>
+                    <p>詳細: ${text} </p>
                 `;
             })
             .catch(error => {
