@@ -37,6 +37,7 @@
 
         function Display() {
             dis = abs(dis-1);
+            console.log(dis);
         }
         
         function Weather(day_num) {
@@ -85,10 +86,10 @@
                     <img src="${url}">
                     <p>最高気温: ${temperature}°C</p>
                     <p>天気:   ${telop}</p>
-                    <p id="more">詳細:  ${description}</p>                                       
+                    <p id="more"><i style="display: none;">詳細:  ${description}</i></p>                                       
                     <p>風:  ${wind}, ${wave}</p>
-                    <p id="more">降水確率 6時: ${chance[0]}; 12時: ${chance[1]}; 18時: ${chance[2]}; 24時: ${chance[3]}</p>
-                    <p id="more">詳細: ${text} </p>
+                    <p id="more"><i style="display: none;">降水確率 6時: ${chance[0]}; 12時: ${chance[1]}; 18時: ${chance[2]}; 24時: ${chance[3]}</i></p>
+                    <p id="more"><i style="display: none;">詳細: ${text} </i></p>
                     <p>更新時間:   ${time}</p>
                     <button onclick="Display()">表示</button>                    
                 `;
@@ -100,8 +101,7 @@
 
         }
 
-        if (dis == 0) {
-            
+        if (dis == 0) {            
             document.getElementById('more').style.display = "none";
         } else {
             document.getElementById('more').style.display = "";
