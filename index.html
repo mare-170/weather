@@ -32,18 +32,10 @@
         const longitude = 136.2216; // 福井の経度
         const apiUrl = 'https://weather.tsukumijima.net/api/forecast?city=180010';
         var dis = 0;
-        if (dis==0) {
-            document.getElementById('more').style.display = 'none';
-        } else {
-            document.getElementById('more').style.display = ''
-        }
 
         function Display() {
             dis = abs(dis-1);
         }
-         
-
-        
         
         function Weather(day_num) {
 
@@ -69,12 +61,19 @@
                 const telop = data.forecasts[day_num].telop;
                 const text = data.description.text;
                 let chance = new Array(4);
+
+                chance[0] = data.forecasts[day_num].chanceOfRain[i].T00_06;
+                chance[1] = data.forecasts[day_num].chanceOfRain[i].T06_12;
+                chance[2] = data.forecasts[day_num].chanceOfRain[i].T12_18;
+                chance[13 = data.forecasts[day_num].chanceOfRain[i].T18_24;
+
                 
-                
+                /*
                 for (var i = 0; i<4; i++) {
                     chance[i] = data.forecasts[day_num].chanceOfRain[i].value;
                     console.log(chance);
                 }
+                */
                 
 
                 weatherDiv.innerHTML = `
@@ -98,7 +97,12 @@
             });
 
         }
-        
+
+        if (dis == 0) {
+            document.getElementById('more').style.display = 'none';
+        } else {
+            document.getElementById('more').style.display = '';
+        }
 
         
     </script>
